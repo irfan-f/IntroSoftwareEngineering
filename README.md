@@ -7,7 +7,9 @@ mechanisms.
 ---------------
 
 - Start by forking this repository on [bitbucket](https://bitbucket.org/UOCIS322/proj0-hello), then cloning onto your
-  development machine.
+  development machine. Read this file (README.md). 
+  
+- Before you edit a file, read the comments (inside that file) carefully.
 
 - Copy the credentials-skel.ini file to credentials.ini and fill in
   appropriately.
@@ -97,6 +99,4 @@ user, follow the instructions from the respective link provided. It should be st
     $ sudo docker run hello-world
     ```
 
-This command downloads a test image and runs it in a container. When the container runs, it prints an informational message and exits.
-
-For more information: (https://docs.docker.com/get-started/)
+This command downloads a test image and runs it in a container. When the container runs, it prints an informational message and exits. For more information: (https://docs.docker.com/get-started/)
