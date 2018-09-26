@@ -59,17 +59,7 @@ user, follow the instructions from the respective link provided. It should be st
 2. Install packages to allow apt to use a repository over HTTPS:
 
     ```
-    $ sudo apt install
-
-      apt-transport-https \
-
-      ca-certificates \
-
-      curl \
-
-      gnupg2 \
-          
-      software-properties-common
+    $ sudo apt install apt-transport-https ca-certificates curl gnupg2 software-properties-common
     ```
 
 3. Add Docker’s official GPG key:
@@ -81,19 +71,13 @@ user, follow the instructions from the respective link provided. It should be st
   Verify that you now have the key with the fingerprint 9DC8 5822 9FC7 DD38 854A E2D8 8D81 803C 0EBF CD88, by searching for the last 8 characters of the fingerprint.
 
     ```
-  $ sudo apt-key fingerprint 0EBFCD88
+    $ sudo apt-key fingerprint 0EBFCD88
     ```
 
 4. Setup stable repository:
 
     ```
-    $ sudo add-apt-repository \
-
-      "deb [arch=amd64] https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") \
-
-      $(lsb_release -cs) \
-
-      stable"
+    $ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") $(lsb_release -cs) stable"
     ```
 
 5. Install DOCKER CE:
