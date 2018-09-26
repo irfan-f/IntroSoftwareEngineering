@@ -1,5 +1,6 @@
 # Proj0-Hello
 =============
+
 Trivial project to exercise version control, turn-in, and other
 mechanisms.
 
@@ -68,7 +69,7 @@ user, follow the instructions from the respective link provided. It should be st
     $ curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg | sudo apt-key add -
     ```
 
-  Verify that you now have the key with the fingerprint 9DC8 5822 9FC7 DD38 854A E2D8 8D81 803C 0EBF CD88, by searching for the last 8 characters of the fingerprint.
+    Verify that you now have the key with the fingerprint 9DC8 5822 9FC7 DD38 854A E2D8 8D81 803C 0EBF CD88, by searching for the last 8 characters of the fingerprint.
 
     ```
     $ sudo apt-key fingerprint 0EBFCD88
