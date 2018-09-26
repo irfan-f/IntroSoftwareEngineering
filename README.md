@@ -59,11 +59,16 @@ user, follow the instructions from the respective link provided. It should be st
 2. Install packages to allow apt to use a repository over HTTPS:
 
     ```
-    $ sudo apt install \
+    $ sudo apt install
+
       apt-transport-https \
+
       ca-certificates \
+
       curl \
+
       gnupg2 \
+          
       software-properties-common
     ```
 
@@ -72,6 +77,7 @@ user, follow the instructions from the respective link provided. It should be st
     ```
     $ curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg | sudo apt-key add -
     ```
+
   Verify that you now have the key with the fingerprint 9DC8 5822 9FC7 DD38 854A E2D8 8D81 803C 0EBF CD88, by searching for the last 8 characters of the fingerprint.
 
     ```
@@ -82,8 +88,11 @@ user, follow the instructions from the respective link provided. It should be st
 
     ```
     $ sudo add-apt-repository \
+
       "deb [arch=amd64] https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") \
+
       $(lsb_release -cs) \
+
       stable"
     ```
 
