@@ -5,7 +5,7 @@ mechanisms.
 ## Instructions:
 
 - Start by forking this repository on github, then cloning onto your
-  development machine.
+  development machine. Read this file (README.md). Before you edit a file, read the comments (inside that file) carefully.
 
 - Copy the credentials-skel.ini file to credentials.ini and fill in
   appropriately.
