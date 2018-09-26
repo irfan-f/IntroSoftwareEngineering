@@ -44,17 +44,13 @@ The following instructions are provided for Linux users. Make sure that you have
     ```
     $ sudo apt-get update
     ```
-2. Install packages to allow apt to use a   repository over HTTPS:
+2. Install packages to allow apt to use a repository over HTTPS:
 
    ```
-    $ sudo apt-get install \
-     apt-transport-https \
-     ca-certificates \
-     curl \
-     gnupg2 \
-     software-properties-common
+    $ sudo apt-get install apt-transport-https ca-certificates curl gnupg2 software-properties-common
     ```
-3. Add Dockerâ€™s official GPG key:
+    
+3. Add Docker’s official GPG key:
 
   ```
   $ curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg | sudo apt-key add -
