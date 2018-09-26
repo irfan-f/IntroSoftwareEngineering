@@ -45,39 +45,31 @@ The following instructions are provided for Linux users. Make sure that you have
     $ sudo apt-get update
     ```
 2. Install packages to allow apt to use a repository over HTTPS:
-
    ```
     $ sudo apt-get install apt-transport-https ca-certificates curl gnupg2 software-properties-common
     ```
-    
-3. Add Docker’s official GPG key:
-
+3. Add Docker's official GPG key:
   ```
   $ curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg | sudo apt-key add -
   ```
-  Verify that you now have the key with the fingerprint 9DC8 5822 9FC7 DD38 854A E2D8 8D81 803C 0EBF CD88, by searching for the last 8 characters of the fingerprint.
-
+4. Verify that you now have the key with the fingerprint 9DC8 5822 9FC7 DD38 854A E2D8 8D81 803C 0EBF CD88, by searching for the last 8 characters of the fingerprint.
   ```
   $ sudo apt-key fingerprint 0EBFCD88
-
   ```
-4. Setup stable repository:
-
+5. Setup stable repository:
     ```
     $ sudo add-apt-repository \
    "deb [arch=amd64] https://download.docker.com/linux/$(. /etc/os-release; echo "$ID") \
    $(lsb_release -cs) \
    stable"
    ```
-
-5. Install DOCKER CE:
+6. Install DOCKER CE:
   ```
   $ sudo apt-get install docker-ce
   ```
-6. Verify that Docker CE is installed correctly by running the hello-world image.
+7. Verify that Docker CE is installed correctly by running the hello-world image.
   ```
   $ sudo docker run hello-world
   ```
-This command downloads a test image and runs it in a container. When the container runs, it prints an informational message and exits.
 
-For more information: (https://docs.docker.com/get-started/)
+This command downloads a test image and runs it in a container. When the container runs, it prints an informational message and exits. For more information: (https://docs.docker.com/get-started/)
