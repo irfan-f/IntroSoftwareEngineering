@@ -24,11 +24,11 @@ mechanisms.
    author, contact address, and a brief description of what the
    software does.
 
-- Test your program locally;  revise and re-test as needed.  (How long
+- Test your program locally; revise and re-test as needed. (How long
   can it take, really?)
 
 - Commit your changes. You will need to use "git add" on your files
-   hello.py and README.md, but *not* on credentials.py, because that
+   hello.py and README.md, but *not* on credentials.ini, because that
    file does not belong on bitbucket.  (In later projects it will contain
    confidential information, like access keys and passwords for web
    services.)  Your changes must be "pushed" to your public repository
