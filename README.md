@@ -35,7 +35,7 @@ mechanisms.
    on bitbucket so that the auto-checker can "clone" them back to the
    grading machine.
 
-- Test your code with the auto-checker. Revise and push changes
+- Test your code with the Makefile. Use the command ``make run`` to execute. Revise and push changes
    as needed.
 
 - Turn in with Canvas. The file you turn in is credentials.ini. We
@@ -63,7 +63,7 @@ user, follow the instructions from the respective link provided. It should be st
     $ sudo apt install apt-transport-https ca-certificates curl gnupg2 software-properties-common
     ```
 
-3. Add Dockerâ€™s official GPG key:
+3. Add Docker’s official GPG key:
 
     ```
     $ curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg | sudo apt-key add -
