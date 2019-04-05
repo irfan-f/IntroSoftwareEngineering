@@ -12,7 +12,7 @@ mechanisms.
   
 - Before you edit a file, read the comments (inside that file) carefully.
 
-- Copy the credentials-skel.ini file to credentials.ini and fill in
+- Copy the credentials-skel.ini file, rename it to credentials.ini and fill in
   appropriately.
 
 - Modify the program "hello.py" so that it prints "Hello
@@ -63,7 +63,7 @@ user, follow the instructions from the respective link provided. It should be st
     $ sudo apt install apt-transport-https ca-certificates curl gnupg2 software-properties-common
     ```
 
-3. Add Docker’s official GPG key:
+3. Add Dockerï¿½s official GPG key:
 
     ```
     $ curl -fsSL https://download.docker.com/linux/$(. /etc/os-release; echo "$ID")/gpg | sudo apt-key add -
