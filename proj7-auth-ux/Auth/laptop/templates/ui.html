@@ -1,0 +1,29 @@
+<html>
+<head>
+  <title>User Interface for Project 7</title>
+</head>
+<body>
+  <div>
+  Project 7:
+  <a href="http://0.0.0.0:5001/">Test Buttons</a>
+  <a href="http://0.0.0.0:5001/login">Log In</a>
+  <a href="http://0.0.0.0:5001/register">Register User</a>
+  <a href="http://0.0.0.0:5001/logout">Log Out</a>
+  <a href="http://0.0.0.0:5001/token">Get a Token</a>
+  <a href="http://0.0.0.0:5001/ui">User Interface</a>
+  </div>
+  <hr>
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+  <ul>
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+  {% endwith %}
+  <div>
+    {% block content %}{% endblock %}
+  </div>
+</body>
+</html>
