@@ -1,0 +1,161 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html> <head>
+
+<!-- Bootstrap requires the following three meta tags to appear first -->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<title>Vocabulary Anagram</title>
+
+<!-- Javascript and Cascading Style Sheets (css) libraries -->
+<!-- mostly from content delivery networks                 -->
+
+<!-- jquery; CDN load is usually quick because it's likely cached -->
+<script type="text/javascript"
+     src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
+</script>
+
+<!-- Bootstrap stylesheet let's us have a 'responsive' layout; -->
+<!-- 12 column grid rearranges itself for smaller screens or windows. -->
+
+<!-- per http://getbootstrap.com/getting-started/  -->
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+ href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+ integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+  crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script
+ src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+ integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+ crossorigin="anonymous">
+</script>
+
+<!-- Our own css file.  Note how we can link directly here and not -->
+<!-- write any routing code in the Flask application. -->
+<link rel="stylesheet" href="/static/jumble.css" />
+
+</head>
+
+<body>
+<div class="container">
+
+  <div class="row">
+    <div class="col-xs-6 text-center">
+      <h1>Words</h1>
+    </div>
+  </div>
+<!-- Vocabularly words layed out in 6 columns;
+  -- bootstrap may collapse to fewer columns and
+  -- more rows if the window is narrow.
+  -->
+<div class="row">
+  {% for word in g.vocab %}
+    <div class="col-xs-2 text-center"> {{ word }} </div>
+    {% if loop.index is divisibleby 3 %}
+    </div> <!-- row -->
+    <div class="row">
+    {% endif %}
+  {% endfor %}
+</div> <!-- row -->
+
+<br />
+
+<div class="row">
+  <div class="col-xs-6 text-center">
+   Use letters from
+  </div>
+  </div><div class="row">
+  <div class="col-xs-6 text-center lead">
+    <strong>{{ session.jumble }}</strong>
+  </div>
+  </div><div class="row">
+  <div class="col-xs-6 text-center">
+    to spell {{session.target_count}} words from the list.
+  </div> <!-- col -->
+</div> <!-- row -->
+<br />
+<div class="row">
+  <div class="col-xs-6 text-center">
+  <form id="entry">
+    <label for="attempt">Word:</label>
+    <input id="attempt" name="attempt" type="text" width="15"
+      autocomplete="off"  autofocus />
+  </form>
+</div></div>
+<!-- Used for presenting information -->
+<p id="results"></p>
+<!-- Mismatch, already found, etc. "flashed" from Python -->
+<p id="message"></p>
+
+
+<script>
+// stops subtmit event from doing anything, even though it is removed from .html
+$("#entry").submit( function(event) {
+    event.preventDefault();
+    });
+// Initialize matches and count
+var count = 0;
+var matches = [];
+$("#attempt").keyup(function(event) {
+    // Get value from #attempt and check to see if key differs from input, such as shift or alt
+    var txt = $('#attempt').val();
+    var letter = String.fromCharCode(event.which);
+
+    if (! "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".includes(letter)) { return; }   
+
+   $.getJSON("/_countem", { text: txt },
+              function(data) {
+                // retrieve data from result using AJAX, result made in flask_vocab.py
+                is_match = data.result.is_match;
+                word = data.result.word;
+                in_jumble = data.result.in_jumble;
+                len_j = data.result.len_j;
+                match_in_j = is_match & in_jumble;
+                target = data.result.target;
+                if ("1234567890".includes(letter)) {
+                  // If its a number, remove number and send message not supported
+                  $("#message").html("Numbers not supported");
+                  word = word.slice(0, -1);
+                  $("#attempt").val(word);
+                } else if(match_in_j & (matches.includes(word))) {
+                  // If it matches and is in matches, alert that already found
+                  $("#message").html("Already Found");
+                } else if(!(is_match) & in_jumble) {
+                  // If it doesn't match a word, show message as such
+                  $("#message").html(word + " isn't in the list of words");
+                } else if(match_in_j & !(matches.includes(word))) {
+                  // If it matches and isnt in matches, say found, push to matches, clear attempt
+                  matches.push(word);
+                  $("#message").html("You found " + word);
+                  $("#results").append(word);
+                  $("#results").append(' ');
+                  $("#attempt").val("");
+                  count += 1;
+                } else if(!(in_jumble)) {
+                  // If its not in jumble, show such and remove character, EXTRA CREDIT
+                  $("#message").html("jumble does not contain " + letter);
+                  word = word.slice(0, -1);
+                  $("#attempt").val(word);
+                }
+                if(target == count) {
+                    // Once target == count, show success page
+                    showSuccess();
+                }
+
+                }
+    );
+});
+
+function showSuccess() {
+    // Reload window to success page
+    window.location.replace("http://127.0.0.1:5000/success");
+}
+</script>
+
+
+ </div> <!-- container -->
+</body> </html>
